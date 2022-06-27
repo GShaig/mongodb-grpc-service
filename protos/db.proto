@@ -1,0 +1,79 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+message Box {
+  string name = 1;
+  int32 id = 2;
+  int32 price = 3;
+  string description = 4;
+  string category = 5;
+  int32 quantity = 6;
+  google.protobuf.Timestamp created_at = 7;
+}
+
+enum RequestStatus
+{
+    OK = 0;
+    ERROR = 1;
+}
+
+message GetBoxRequest {
+  int32 id = 1;
+}
+
+message GetBoxResponse {
+  Box box = 1;
+  RequestStatus status = 2;
+}
+
+message GetAllBoxesRequest {
+}
+
+message GetBoxesResponse {
+  repeated Box box = 1;
+  RequestStatus status = 2;
+}
+
+message CreateBoxRequest {
+  Box box = 1;
+}
+
+message CreateBoxResponse {
+  RequestStatus status = 1;
+}
+
+message UpdateBoxRequest {
+  Box box = 1;
+}
+
+message UpdateBoxResponse {
+  RequestStatus status = 1;
+}
+
+message DeleteBoxRequest {
+  int32 id = 1;
+}
+
+message DeleteBoxResponse {
+  RequestStatus status = 1;
+}
+
+message GetBoxesInCategoryRequest {
+  string category = 1;
+}
+
+message GetBoxesInTimeRangeRequest {
+  google.protobuf.Timestamp start_time = 1;
+  google.protobuf.Timestamp end_time = 2;
+}
+
+service DatabaseService {
+  rpc GetBox(GetBoxRequest) returns (GetBoxResponse) {}
+  rpc GetBoxes(GetAllBoxesRequest) returns (GetBoxesResponse) {}
+  rpc CreateBox(CreateBoxRequest) returns (CreateBoxResponse) {}
+  rpc UpdateBox(UpdateBoxRequest) returns (UpdateBoxResponse) {}
+  rpc DeleteBox(DeleteBoxRequest) returns (DeleteBoxResponse) {}
+  rpc GetBoxesInCategory(GetBoxesInCategoryRequest) returns (GetBoxesResponse) {}
+  rpc GetBoxesInTimeRange(GetBoxesInTimeRangeRequest) returns (GetBoxesResponse) {}
+}
