@@ -14,7 +14,7 @@ MongoDB Microservice with gRPC - Server and Client APIs in Python
 
 - Generate server and client protocol codes:
 
-       python -m grpc_tools.protoc --proto_path=../protos/ --python_out=. --grpc_python_out=. db.proto
+       python -m grpc_tools.protoc -I../../protos --python_out=. --grpc_python_out=. ../../protos/db.proto
 
 
 - Run server:
