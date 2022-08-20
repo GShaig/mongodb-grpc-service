@@ -7,8 +7,6 @@ pymongo==4.1.1
 six==1.16.0
 zipp==3.8.0
 google==3.0.0
-bson==0.5.10
 itsdangerous==2.1.2
 MarkupSafe==2.1.1
-Werkzeug==2.1.2
 python-dateutil==2.8.2
